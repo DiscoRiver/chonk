@@ -1,15 +1,15 @@
-# got-chonk
+# go-chonky
 
-Tests for hiding encrypted data in .PNG images
+Tests for hiding/retrieving encrypted data in .PNG image chunks
 
 Current stages I'm working on;
 
-1. Appending Chunk to the image
-2. Inserting chunk to a pre-determined location.
+1. Rebuild .png file, and retain byte integrity
+2. Append payload to existing byte structure
+3. Append payload to imported byte structure (same as above, but doesn't overwrite)
+4. Inject payload to pre-determined location within byte structure
+5. Inject to random location within byte structure
 
-Aside from the technology to insert chunks into .PNG files, there are other stages to completing this project;
+Payload package - This package is responsible for encrypting/decrypting a payload with an AES cipher.
 
-1. To encrypt data using AES cipher
-2. Insert that data into the image
-3. Transporting file non-destructively (compression affects image bytes)
-3. Be able to locate and decrypt data on remote end.
+Extract package - this package is responsible for identifying the payload from an arbitrary position within the given file.
