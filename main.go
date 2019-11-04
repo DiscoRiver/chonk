@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/DiscoRiver/go-chonk/payload"
 
@@ -116,15 +117,17 @@ func inject() {
 	} else {
 		fmt.Printf("\n----WARNING----\n")
 		fmt.Printf("NO KEYFILE GIVEN, PAYLOAD WILL NOT BE ENCRYPTED\n")
-		fmt.Printf("\n ARE YOU SURE YOU WANT TO CONTINUE? (y/N): ")
+		fmt.Printf("\nARE YOU SURE YOU WANT TO CONTINUE? (y/N): ")
 
 		reader := bufio.NewReader(os.Stdin)
 		confirm, _ := reader.ReadString('\n')
-
+		confirm = strings.Trim(confirm, "\n")
 		switch confirm {
 		case "n", "no", "N", "NO", "No":
 			os.Exit(0)
 		case "y", "yes", "Y", "YES", "Yes":
+			fmt.Printf("Proceeding with no encryption.\n")
+			fmt.Printf("----WARNING END----\n")
 			break
 		default:
 			os.Exit(0)
@@ -148,7 +151,7 @@ func inject() {
 		injection.Rebuild(burnedChunks, target)
 		fmt.Printf("\n----WRITTEN CHUNKS----\n")
 		injection.PrintChunks(burnedChunks)
-		fmt.Printf("\n----END WRITTEN CHUNKS----\n")
+		fmt.Printf("----END WRITTEN CHUNKS----\n")
 	} else {
 		fmt.Printf("\nNo target. Would've written the following bytes;\n")
 		injection.PrintChunks(burnedChunks)
