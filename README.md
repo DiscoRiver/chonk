@@ -11,12 +11,12 @@ A PNG image that has been injected into using this program can be decrypted by s
 
 ### Inject
 ```
-./go-chonk inject -file assets/padlock.png -payload assets/sample-payload-text.txt -target output.png -key assets/keyfile.txt
+$ go-chonk inject -file assets/padlock.png -payload assets/sample-payload-text.txt -target output.png -key assets/keyfile.txt
 ```
 
 ### Extract
 ```
-./go-chonk extract -file output.png -key assets/keyfile.txt
+$ go-chonk extract -file output.png -key assets/keyfile.txt
 ```
 ## Usage
 
