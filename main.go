@@ -21,6 +21,10 @@ var keyFile string
 var chunkFlag bool
 
 func main() {
+
+	flag.StringVar(&filename, "file", "", "input file")
+	flag.BoolVar(&chunkFlag, "c", false, "print chunks")
+
 	ex := flag.NewFlagSet("extract", flag.ContinueOnError)
 	ex.StringVar(&filename, "file", "", "input file")
 	ex.StringVar(&keyFile, "key", "", "encryption key file")
@@ -31,7 +35,6 @@ func main() {
 	in.StringVar(&payloadFile, "payload", "", "payload file")
 	in.StringVar(&keyFile, "key", "", "encryption key file")
 	in.BoolVar(&chunkFlag, "c", false, "print chunks")
-	in.BoolVar(&chunkFlag, "chunks", false, "print chunks")
 
 	switch os.Args[1] {
 	case "extract":
@@ -39,11 +42,15 @@ func main() {
 		if os.Args[2] != "--help" {
 			extract()
 		}
-
 	case "inject":
 		in.Parse(os.Args[2:])
 		if os.Args[2] != "--help" {
 			inject()
+		}
+	default:
+		flag.Parse()
+		if chunkFlag {
+			FileStat()
 		}
 	}
 }
@@ -74,6 +81,19 @@ func extract() {
 	fmt.Printf("\n----PAYLOAD DECRYPTED----\n")
 	fmt.Printf("%v\n", plainString)
 	fmt.Printf("----END PAYLOAD----\n")
+}
+
+func FileStat() {
+	// reference file
+	referenceFile, err := os.Open(filename)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	defer referenceFile.Close()
+
+	// Get reference file chunks
+	referenceChunks := injection.GetChunks(referenceFile)
+	injection.PrintChunks(referenceChunks)
 }
 
 func inject() {
@@ -144,7 +164,7 @@ func inject() {
 		finalPayloadString = payloadString
 	}
 
-	payload := payload.BuildPayload(finalPayloadString, "puNk")
+	payload := payload.BuildPayload(finalPayloadString, "tEXt")
 	burnedChunks := injection.Inject(referenceChunks, payload)
 	// Export to file?
 	if target != "" {
