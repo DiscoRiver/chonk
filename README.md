@@ -7,6 +7,17 @@ go-chonk will inject a payload into a PNG image, with the chunkType "puNk". Payl
 
 A PNG image that has been injected into using this program can be decrypted by supplying the PNG file, and a file containing the same 32-byte key. 
 
+## Example
+
+### Inject
+```
+./go-chonk inject -file assets/padlock.png -payload assets/sample-payload-text.txt -target output.png -key assets/keyfile.txt
+```
+
+### Extract
+```
+./go-chonk extract -file output.png -key assets/keyfile.txt
+```
 ## Usage
 
 ### go-chonk extract
