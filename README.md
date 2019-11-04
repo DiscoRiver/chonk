@@ -1,15 +1,36 @@
-# go-chonky
+# go-chonk
+*Injects/Extracts chunk data in PNG images.*
 
-Tests for hiding/retrieving encrypted data in .PNG image chunks
+## Description
 
-Current stages I'm working on;
+go-chonk will inject a payload into a PNG image, with the chunkType "puNk". Payload can be encrypted by supplying a file containing a 32-byte key. A warning will be displayed when attempting to use an unencrypted payload.
 
-1. Rebuild .png file, and retain byte integrity
-2. Append payload to existing byte structure
-3. Append payload to imported byte structure (same as above, but doesn't overwrite)
-4. Inject payload to pre-determined location within byte structure
-5. Inject to random location within byte structure
+A PNG image that has been injected into using this program can be decrypted by supplying the PNG file, and a file containing the same 32-byte key. 
 
-Payload package - This package is responsible for encrypting/decrypting a payload with an AES cipher.
+## Usage
 
-Extract package - this package is responsible for identifying the payload from an arbitrary position within the given file.
+### go-chonk extract
+```
+Usage of extract:
+  -file string
+        input file
+  -key string
+        encryption key file
+```
+
+### go-chonk inject
+```
+Usage of inject:
+  -c    print chunks
+  -chunks
+        print chunks
+  -file string
+        input file
+  -key string
+        encryption key file
+  -payload string
+        payload file
+  -target string
+        target file
+```
+
