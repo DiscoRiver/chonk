@@ -164,7 +164,7 @@ func inject() {
 		finalPayloadString = payloadString
 	}
 
-	payload := payload.BuildPayload(finalPayloadString, "tEXt")
+	payload := payload.BuildPayload(finalPayloadString, "puNK")
 	burnedChunks := injection.Inject(referenceChunks, payload)
 	// Export to file?
 	if target != "" {
