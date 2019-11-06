@@ -27,6 +27,7 @@ func PrintChunks(chunks []Chunk) {
 			cap = len(chunks[i].Data)
 		}
 		output += fmt.Sprintf("Chunk data (10 bytes): %x\n", chunks[i].Data[:cap])
+		output += fmt.Sprintf("Chunk CRC32: %v\n", chunks[i].Crc32)
 		output += fmt.Sprintf("----------\n")
 
 	}

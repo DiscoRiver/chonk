@@ -20,8 +20,8 @@ func BuildPayload(data string, dataType string) injection.Chunk {
 
 	// CRC32
 	var crcCheck []byte
-	crcCheck = append(crcCheck, c.CType...)
-	crcCheck = append(crcCheck, c.Data...)
+	crcCheck = append(crcCheck, append(c.CType, c.Data...)...)
+
 	binary.BigEndian.PutUint32(c.Crc32, crc32.ChecksumIEEE(crcCheck))
 
 	return c
