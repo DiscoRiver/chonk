@@ -50,6 +50,8 @@ Usage of inject:
         encryption key file
   -payload string
         payload file
+ -shuffle
+        Shuffle payload position
   -target string
         target file
 ```
