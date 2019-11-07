@@ -1,21 +1,26 @@
 package injection
 
-func Inject(chunks []Chunk, payload Chunk) []Chunk {
+import (
+	"math/rand"
+	"time"
+)
+
+func Inject(chunks []Chunk, payload Chunk, shuffle bool) []Chunk {
 	var burnedChunks []Chunk
-	//var IDATpassed bool
+
+	// randomise position if shuffle, otherwise add after position 2
+	pos := 2
+	if shuffle {
+		rand.Seed(time.Now().Unix())
+		pos = rand.Intn(len(chunks))
+	}
 
 	for i := range chunks {
-		//if IDATpassed {
-		if i == 2 {
+		if i == pos {
 			burnedChunks = append(burnedChunks, payload)
-			//IDATpassed = false
 		}
 		burnedChunks = append(burnedChunks, chunks[i])
 
-		// Check if this is the IDAT chunk
-		if string(chunks[i].CType) == "IDAT" {
-			//IDATpassed = true
-		}
 	}
 	return burnedChunks
 }

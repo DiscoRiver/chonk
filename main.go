@@ -19,6 +19,7 @@ var target string
 var payloadFile string
 var keyFile string
 var chunkFlag bool
+var shuffle bool
 
 func main() {
 
@@ -35,6 +36,7 @@ func main() {
 	in.StringVar(&payloadFile, "payload", "", "payload file")
 	in.StringVar(&keyFile, "key", "", "encryption key file")
 	in.BoolVar(&chunkFlag, "c", false, "print chunks")
+	in.BoolVar(&shuffle, "shuffle", false, "Shuffle payload position")
 
 	switch os.Args[1] {
 	case "extract":
@@ -165,7 +167,7 @@ func inject() {
 	}
 
 	payload := payload.BuildPayload(finalPayloadString, "puNK")
-	burnedChunks := injection.Inject(referenceChunks, payload)
+	burnedChunks := injection.Inject(referenceChunks, payload, shuffle)
 	// Export to file?
 	if target != "" {
 		injection.Rebuild(burnedChunks, target)
