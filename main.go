@@ -9,6 +9,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/DiscoRiver/go-chonk/extraction"
 	"github.com/DiscoRiver/go-chonk/payload"
 
 	"github.com/DiscoRiver/go-chonk/injection"
@@ -67,7 +68,7 @@ func extract() {
 
 	referenceChunks := injection.GetChunks(referenceFile)
 
-	payloadChunkString := payload.Pull(referenceChunks)
+	payloadChunkString := extraction.Pull(referenceChunks)
 	if payloadChunkString == "" {
 		fmt.Printf("Payload chunk not found in this file.")
 		os.Exit(0)
@@ -166,7 +167,7 @@ func inject() {
 		finalPayloadString = payloadString
 	}
 
-	payload := payload.BuildPayload(finalPayloadString, "puNK")
+	payload := payload.BuildPayload(finalPayloadString, "puNK", shuffle)
 	burnedChunks := injection.Inject(referenceChunks, payload, shuffle)
 	// Export to file?
 	if target != "" {
