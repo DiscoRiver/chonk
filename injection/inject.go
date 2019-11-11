@@ -5,7 +5,8 @@ import (
 	"time"
 )
 
-func Inject(chunks []Chunk, payload []Chunk, shuffle bool) []Chunk {
+// Inject will build a Chunk slice consisting of the source image chunks, and the payload. Payload position is randomised.
+func Inject(chunks []Chunk, payload []Chunk) []Chunk {
 	var burnedChunks []Chunk
 
 	// randomise position as standard, otherwise split ciphertext if shuffle

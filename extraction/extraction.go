@@ -4,6 +4,8 @@ import (
 	"github.com/DiscoRiver/go-chonk/injection"
 )
 
+// Pull takes source chunks, and pulls out data from payload. Returns string which is either plaintext data
+// or ciphertext.
 func Pull(chunks []injection.Chunk) string {
 	var payloadByte []byte
 

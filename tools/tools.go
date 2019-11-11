@@ -27,6 +27,7 @@ func CalcMD5(f *os.File) []byte {
 	return h.Sum(nil)
 }
 
+// VerifyIntegrity is a test function for verifying the rebuild process of an unmodified PNG file.
 func VerifyIntegrity(f1, f2 *os.File) {
 	fmt.Printf("----------\n")
 	fmt.Printf("Checking integrity...")

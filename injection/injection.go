@@ -13,7 +13,7 @@ type Chunk struct {
 	Crc32  []byte // CRC32 of chunk data
 }
 
-// ParseChunk prints chunk data
+// PrintChunks prints chunk data to Stdout
 func PrintChunks(chunks []Chunk) {
 	var output string
 	for i := range chunks {

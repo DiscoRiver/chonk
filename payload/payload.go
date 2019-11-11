@@ -10,6 +10,8 @@ import (
 	"github.com/DiscoRiver/go-chonk/injection"
 )
 
+// BuildPayload builds a Chunk slice from a data string, and dataType string. Shuffle will split data across two chunks
+// to obfuscate the ciphertext or plaintext data.
 func BuildPayload(data string, dataType string, shuffle bool) []injection.Chunk {
 	var c []injection.Chunk
 	var ch injection.Chunk

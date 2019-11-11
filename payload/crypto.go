@@ -9,6 +9,7 @@ import (
 	"log"
 )
 
+// EncryptAES encrypts plaintext string with the provided key.
 func EncryptAES(key []byte, text string) string {
 	plaintext := []byte(text)
 
@@ -30,6 +31,7 @@ func EncryptAES(key []byte, text string) string {
 	return base64.URLEncoding.EncodeToString(ciphertext)
 }
 
+// DecryptAES decrypts ciphertext string with the provided key.
 func DecryptAES(key []byte, cryptoText string) string {
 	ciphertext, _ := base64.URLEncoding.DecodeString(cryptoText)
 

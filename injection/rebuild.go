@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// Rebuild will rebuild a PNG image from a Chunk slice, to the target file with 0644 permissions.
 func Rebuild(chunks []Chunk, target string) {
 
 	outFile, err := os.OpenFile(target, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
