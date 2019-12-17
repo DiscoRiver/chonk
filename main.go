@@ -168,7 +168,7 @@ func inject() {
 	}
 
 	payload := payload.BuildPayload(finalPayloadString, "puNK", shuffle)
-	burnedChunks := injection.Inject(referenceChunks, payload, shuffle)
+	burnedChunks := injection.Inject(referenceChunks, payload)
 	// Export to file?
 	if target != "" {
 		injection.Rebuild(burnedChunks, target)
