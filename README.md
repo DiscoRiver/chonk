@@ -1,9 +1,9 @@
-# go-chonk
+# chonk
 *Injects/Extracts chunk data in PNG images.*
 
 ## Description
 
-go-chonk will inject a payload into a PNG image, with the chunkType "puNK". Payload can be encrypted by supplying a file containing a 32-byte key. A warning will be displayed when attempting to use an unencrypted payload.
+chonk will inject a payload into a PNG image, with the chunkType "puNK". Payload can be encrypted by supplying a file containing a 32-byte key. A warning will be displayed when attempting to use an unencrypted payload.
 
 A PNG image that has been injected into using this program can be decrypted by supplying the PNG file, and a file containing the same 32-byte key. 
 
@@ -20,16 +20,16 @@ Programs such as optipng will be able to run optimisations without causing probl
 
 ### Inject
 ```
-$ go-chonk inject -file assets/padlock.png -payload assets/sample-payload-text.txt -target output.png -key assets/keyfile.txt
+$ chonk inject -file assets/padlock.png -payload assets/sample-payload-text.txt -target output.png -key assets/keyfile.txt
 ```
 
 ### Extract
 ```
-$ go-chonk extract -file output.png -key assets/keyfile.txt
+$ chonk extract -file output.png -key assets/keyfile.txt
 ```
 ## Usage
 
-### go-chonk extract
+### chonk extract
 ```
 Usage of extract:
   -file string
@@ -38,7 +38,7 @@ Usage of extract:
         encryption key file
 ```
 
-### go-chonk inject
+### chonk inject
 ```
 Usage of inject:
   -c    print chunks
